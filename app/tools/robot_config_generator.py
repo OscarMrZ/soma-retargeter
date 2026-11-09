@@ -1160,7 +1160,8 @@ class Viewer:
             if getattr(self.model, "joint_limit_upper", None) is not None else None
 
         for i, label in enumerate(self.model.body_label):
-            if joint_type_np[i] != newton.JointType.REVOLUTE:
+            # Slide (prismatic) joints get a slider too, e.g. telescopic leg-length joints.
+            if joint_type_np[i] not in (newton.JointType.REVOLUTE, newton.JointType.PRISMATIC):
                 continue
             name   = newton_utils.get_name_from_label(label)
             q_idx   = int(q_start_np[i])
