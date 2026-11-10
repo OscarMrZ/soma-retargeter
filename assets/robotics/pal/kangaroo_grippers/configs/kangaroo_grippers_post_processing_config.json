@@ -1,0 +1,38 @@
+{
+    "contact_correction": {
+        "transition_frames": 4,
+        "propagation_ratio": 0.4,
+        "rotation_propagation_ratio": 0.15,
+        "enable_flatten_foot_plant": true
+    },
+    "limb_stabilizer": {
+        "ik_iterations": 20,
+        "joint_limit_weight": 10.0,
+        "effectors": {
+            "base_link": [
+                30.0,
+                8.0
+            ],
+            "leg_left_3_link": [
+                1.5,
+                0.15
+            ],
+            "leg_left_5_link": [
+                10.0,
+                2.0
+            ],
+            "leg_right_3_link": [
+                1.5,
+                0.15
+            ],
+            "leg_right_5_link": [
+                10.0,
+                2.0
+            ]
+        },
+        "ik_root": 0,
+        "root_correction_ratio": 1.0,
+        "root_smooth_alpha": 0.8,
+        "ik_limbs": {}
+    }
+}
