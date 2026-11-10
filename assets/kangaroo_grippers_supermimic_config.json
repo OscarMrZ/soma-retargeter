@@ -1,0 +1,12 @@
+{
+	"import_folder": "assets/motions/bvh",
+	"export_folder": "assets/motions/kangaroo_grippers_library",
+	"export_format": "supermimic",
+	"export_fps": 50,
+	"batch_size": 100,
+	"retargeter": "Newton",
+	"retarget_source": "soma",
+	"retarget_target": "kangaroo_grippers",
+	"retarget_source_facing_direction": "Mujoco",
+	"extra_robot_paths": ["assets/robotics"]
+}

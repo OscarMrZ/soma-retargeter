@@ -13,6 +13,7 @@ from soma_retargeter.robotics import robot_registry
 import soma_retargeter.utils.math_utils as math_utils
 import soma_retargeter.io.bvh as bvh_utils
 import soma_retargeter.io.csv as csv_utils
+import soma_retargeter.io.npy as npy_utils
 import soma_retargeter.pipelines.utils as pipeline_utils
 
 from soma_retargeter.utils import newton_utils
@@ -560,6 +561,13 @@ class Viewer:
             print(f"[ERROR]: Invalid retarget solver selected [{retarget_solver}]. Use 'Newton'.")
             exit(-1)
 
+        # "supermimic" packs every motion into one library folder (qpos.npy, qvel.npy, clips.json)
+        export_library = self.config.get('export_format', 'csv') == 'supermimic'
+        library_clips = []
+        if export_library:
+            library_joint_names = newton_utils.get_filtered_joint_names(
+                retarget_pipeline.robot_builder, [newton.JointType.REVOLUTE, newton.JointType.PRISMATIC])
+
         nb_retargeted_motions = 0
         start_time = time.time()
 
@@ -585,13 +593,23 @@ class Viewer:
                 csv_buffers = retarget_pipeline.execute()
 
                 assert(len(csv_buffers) == len(animations))
-                for i in trange(len(csv_buffers), desc="[INFO]: Exporting CSV Files"):
-                    csv_buffer = csv_buffers[i]
-                    dst_path = export_path / pathlib.Path(batch[i]).relative_to(import_path).with_suffix(".csv")
-                    dst_path.parent.mkdir(parents=True, exist_ok=True)
-                    csv_utils.save_csv(dst_path, actuated_joint_names, csv_buffer)
+                if export_library:
+                    for i in range(len(csv_buffers)):
+                        rel_path = pathlib.Path(batch[i]).relative_to(import_path).with_suffix("")
+                        category = rel_path.parts[0] if len(rel_path.parts) > 1 else "soma"
+                        library_clips.append((rel_path.as_posix(), category, csv_buffers[i]))
+                else:
+                    for i in trange(len(csv_buffers), desc="[INFO]: Exporting CSV Files"):
+                        csv_buffer = csv_buffers[i]
+                        dst_path = export_path / pathlib.Path(batch[i]).relative_to(import_path).with_suffix(".csv")
+                        dst_path.parent.mkdir(parents=True, exist_ok=True)
+                        csv_utils.save_csv(dst_path, actuated_joint_names, csv_buffer)
 
             nb_retargeted_motions += len(batch)
+
+        if export_library:
+            npy_utils.save_library(
+                export_path, library_joint_names, library_clips, self.config.get('export_fps', 50))
 
         elapsed_time = time.time() - start_time
         elapsed_str = f"{int(elapsed_time // 3600):02d}:{int((elapsed_time % 3600) // 60):02d}:{int(elapsed_time % 60):02d}"
