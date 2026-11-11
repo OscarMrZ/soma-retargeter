@@ -86,9 +86,9 @@
     },
     "smooth_joint_filter_objective_body_masks": {
         "arm_left_1_link": [
-            0.2,
-            1.02,
-            1.02
+            1.0,
+            0.5,
+            0.5
         ],
         "arm_left_2_link": [
             1.0,
@@ -101,9 +101,9 @@
             0.5
         ],
         "arm_right_1_link": [
-            0.2,
-            1.02,
-            1.02
+            1.0,
+            0.5,
+            0.5
         ],
         "arm_right_2_link": [
             1.0,
@@ -124,6 +124,36 @@
             1.0,
             2.4,
             2.4
+        ],
+        "arm_left_4_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_left_5_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_left_6_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_right_4_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_right_5_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_right_6_link": [
+            1.0,
+            0.0,
+            0.0
         ],
         "leg_left_1_link": [
             4.0,
