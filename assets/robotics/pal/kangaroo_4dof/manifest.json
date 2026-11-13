@@ -1,0 +1,9 @@
+{
+    "name": "kangaroo_4dof",
+    "desc": {
+        "xml_path": "desc/kangaroo_4dof.xml"
+    },
+    "retarget_configs": {
+        "soma": "configs/soma_to_kangaroo_4dof_retargeter_config.json"
+    }
+}

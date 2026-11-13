@@ -1,0 +1,179 @@
+{
+    "num_initialization_frames": 10,
+    "num_stabilization_frames": 5,
+    "ik_iterations": 24,
+    "joint_limit_weight": 10.0,
+    "smooth_joint_filter_weight": 5.5,
+    "enable_post_processing": true,
+    "enable_contact_processing": true,
+    "human_robot_scaler_config": "configs/soma_to_kangaroo_4dof_scaler_config.json",
+    "post_processing": {
+        "robot_config": "configs/kangaroo_4dof_post_processing_config.json"
+    },
+    "ik_match_table": {
+        "Hips": {
+            "t_body": "base_link",
+            "r_body": "base_link",
+            "t_weight": 50.0,
+            "r_weight": 10.0
+        },
+        "Chest": {
+            "t_body": "pelvis_2_link",
+            "r_body": "pelvis_2_link",
+            "t_weight": 0.7,
+            "r_weight": 1.5
+        },
+        "LeftArm": {
+            "t_body": "arm_left_2_link",
+            "r_body": "arm_left_2_link",
+            "t_weight": 1.5,
+            "r_weight": 0.5
+        },
+        "LeftForeArm": {
+            "t_body": "arm_left_4_link",
+            "r_body": "arm_left_4_link",
+            "t_weight": 1.0,
+            "r_weight": 1.0
+        },
+        "LeftHand": {
+            "t_body": "arm_left_tip_link",
+            "r_body": "arm_left_tip_link",
+            "t_weight": 2.0,
+            "r_weight": 0.0
+        },
+        "RightArm": {
+            "t_body": "arm_right_2_link",
+            "r_body": "arm_right_2_link",
+            "t_weight": 1.5,
+            "r_weight": 0.5
+        },
+        "RightForeArm": {
+            "t_body": "arm_right_4_link",
+            "r_body": "arm_right_4_link",
+            "t_weight": 1.0,
+            "r_weight": 1.0
+        },
+        "RightHand": {
+            "t_body": "arm_right_tip_link",
+            "r_body": "arm_right_tip_link",
+            "t_weight": 2.0,
+            "r_weight": 0.0
+        },
+        "LeftLeg": {
+            "t_body": "leg_left_3_link",
+            "r_body": "leg_left_3_link",
+            "t_weight": 1.5,
+            "r_weight": 0.15
+        },
+        "LeftFoot": {
+            "t_body": "leg_left_5_link",
+            "r_body": "leg_left_5_link",
+            "t_weight": 30.0,
+            "r_weight": 2.0
+        },
+        "RightLeg": {
+            "t_body": "leg_right_3_link",
+            "r_body": "leg_right_3_link",
+            "t_weight": 1.5,
+            "r_weight": 0.15
+        },
+        "RightFoot": {
+            "t_body": "leg_right_5_link",
+            "r_body": "leg_right_5_link",
+            "t_weight": 30.0,
+            "r_weight": 2.0
+        }
+    },
+    "smooth_joint_filter_objective_body_masks": {
+        "arm_left_1_link": [
+            1.0,
+            0.5,
+            0.5
+        ],
+        "arm_left_2_link": [
+            1.0,
+            0.3,
+            1.02
+        ],
+        "arm_left_3_link": [
+            1.0,
+            0.5,
+            0.5
+        ],
+        "arm_right_1_link": [
+            1.0,
+            0.5,
+            0.5
+        ],
+        "arm_right_2_link": [
+            1.0,
+            0.3,
+            1.02
+        ],
+        "arm_right_3_link": [
+            1.0,
+            0.5,
+            0.5
+        ],
+        "arm_left_4_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "arm_right_4_link": [
+            1.0,
+            0.0,
+            0.0
+        ],
+        "leg_left_1_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_left_2_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_left_3_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_left_4_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_left_5_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_right_1_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_right_2_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_right_3_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_right_4_link": [
+            4.0,
+            0.0,
+            0.0
+        ],
+        "leg_right_5_link": [
+            4.0,
+            0.0,
+            0.0
+        ]
+    }
+}
