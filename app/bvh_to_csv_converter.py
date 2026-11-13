@@ -561,7 +561,7 @@ class Viewer:
             print(f"[ERROR]: Invalid retarget solver selected [{retarget_solver}]. Use 'Newton'.")
             exit(-1)
 
-        # "supermimic" packs every motion into one library folder (qpos.npy, qvel.npy, clips.json)
+        # "supermimic" packs every motion into one library folder (one .npy per field, see io/npy.py)
         export_library = self.config.get('export_format', 'csv') == 'supermimic'
         library_clips = []
         if export_library:
@@ -596,8 +596,7 @@ class Viewer:
                 if export_library:
                     for i in range(len(csv_buffers)):
                         rel_path = pathlib.Path(batch[i]).relative_to(import_path).with_suffix("")
-                        category = rel_path.parts[0] if len(rel_path.parts) > 1 else "soma"
-                        library_clips.append((rel_path.as_posix(), category, csv_buffers[i]))
+                        library_clips.append((rel_path.as_posix(), csv_buffers[i]))
                 else:
                     for i in trange(len(csv_buffers), desc="[INFO]: Exporting CSV Files"):
                         csv_buffer = csv_buffers[i]
